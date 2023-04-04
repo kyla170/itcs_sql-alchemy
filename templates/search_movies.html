@@ -1,0 +1,13 @@
+{% extends '_layout.html' %}
+
+{% block title %}Movie Rating App | Search Movie Ratings{% endblock %}
+
+{% block body %}
+<h1 class="mb-5" style="color:red">Search Movie Ratings</h1>
+<p class="mb-3" style="color:#6d6e6c">Search for a movie rating below</p>
+
+<form action="/movies/search" method="post">
+    <input type="text" name="title" id="title" autocomplete="on">
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

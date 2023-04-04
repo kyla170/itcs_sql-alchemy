@@ -1,0 +1,6 @@
+venv
+.vscode
+.DS_Store
+__pycache__
+.pytest_cache
+Mod. 10 Virtual Environment
