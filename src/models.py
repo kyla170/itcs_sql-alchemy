@@ -1,12 +1,8 @@
-# TODO - Create SQLAlchemy DB and Movie model
-from msilib.schema import Directory
-from turtle import title
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Movie(db.model):
+class Movie(db.Model):
     movie_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     director = db.Column(db.String, nullable=False)
