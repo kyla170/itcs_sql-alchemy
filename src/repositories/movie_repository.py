@@ -9,23 +9,23 @@ class MovieRepository:
         self.movies: list[models.Movie] = []
 
     def get_all_movies(self):
-        return self.movies
+        return Movie.query.all()
 
     def get_movie_by_id(self, movie_id):
+        allMovies = self.get_all_movies()
         # Perform a linear search through the in-memory database
-        for movie in self.movies:
+        for mov in allMovies:
             # If the movie title matches, return the movie
-            if movie.movie_id == movie_id:
-                return movie
+            if mov.movie_id == movie_id:
+                return mov
         # If we made it this far, no movies matched so return None
         return None
 
     def create_movie(self, newTitle, newDirector, newRating):
         # Create the movie instance
-        #newID = models.Movie.query.filter_by(models.Movie.movie_id).last() + 1
-        newID = 1
+        newID = Movie.query.last().id + 1
         print("NewID =", newID)
-        new_movie = models.Movie(movie_id = newID, title = newTitle, director = newDirector, rating = newRating)
+        new_movie = Movie(movie_id = newID, title = newTitle, director = newDirector, rating = newRating)
         # Save the instance in our in-memory database
         self.movies.append(new_movie)
         db.session.add(new_movie)
@@ -34,11 +34,12 @@ class MovieRepository:
         return None
 
     def search_movies(self, title):
+        allMovies = self.get_all_movies()
         # Perform a linear search through the in-memory database
-        for movie in self.movies:
+        for mov in allMovies:
             # If the movie title matches, return the movie
-            if movie.title.lower() == title.lower():
-                return movie
+            if mov.title.lower() == title.lower():
+                return mov
         # If we made it this far, no movies matched so return None
         return None
 
